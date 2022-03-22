@@ -111,6 +111,7 @@ def handle_dialog(req, res):
                         'end_session': False
                     }
                 }
+                res['response']['text'] = f'Привет! Купи {animal}!'
                 handle_dialog(request.json, response)
             else:
                 res['response']['end_session'] = True
