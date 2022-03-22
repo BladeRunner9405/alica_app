@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO)
 # Когда он откажется купить слона,
 # то мы уберем одну подсказку. Как будто что-то меняется :)
 sessionStorage = {}
-animal = 'слона'
+
 
 
 @app.route('/post', methods=['POST'])
@@ -112,6 +112,7 @@ def handle_dialog(req, res):
                     }
                 }
                 res['response']['text'] = f'Привет! Купи {animal}!'
+                res['response']['buttons'] = get_suggests(user_id)
                 handle_dialog(request.json, response)
             else:
                 res['response']['end_session'] = True
@@ -152,5 +153,6 @@ def get_suggests(user_id):
 
 
 if __name__ == '__main__':
+    animal = 'слона'
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
