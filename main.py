@@ -111,7 +111,7 @@ def handle_dialog(req, res):
                         'end_session': False
                     }
                 }
-                handle_dialog(True, response)
+                handle_dialog(request.json, response)
             else:
                 res['response']['end_session'] = True
             return
