@@ -38,6 +38,7 @@ sessionStorage = {}
 # Внутри функции доступен request.json - это JSON,
 # который отправила нам Алиса в запросе POST
 def main():
+    global animal
     logging.info(f'Request: {request.json!r}')
 
     # Начинаем формировать ответ, согласно документации
@@ -55,7 +56,9 @@ def main():
     # Она сформирует оставшиеся поля JSON, которые отвечают
     # непосредственно за ведение диалога
     handle_dialog(request.json, response)
-
+    if request.json['session']['new']:
+        animal = 'слона'
+    
     logging.info(f'Response:  {response!r}')
 
     # Преобразовываем в JSON и возвращаем
@@ -112,8 +115,8 @@ def handle_dialog(req, res):
                     }
                 }
                 res['response']['text'] = f'Привет! Купи {animal}!'
-                res['response']['buttons'] = get_suggests(user_id)
                 sessionStorage[user_id] = {'suggests': ["Не хочу.", "Не буду.", "Отстань!"]}
+                res['response']['buttons'] = get_suggests(user_id)
                 handle_dialog(request.json, response)
             else:
                 res['response']['end_session'] = True
