@@ -30,6 +30,7 @@ logging.basicConfig(level=logging.INFO)
 # Когда он откажется купить слона,
 # то мы уберем одну подсказку. Как будто что-то меняется :)
 sessionStorage = {}
+animal = 'слона'
 
 
 @app.route('/post', methods=['POST'])
@@ -62,6 +63,7 @@ def main():
 
 
 def handle_dialog(req, res):
+    global animal
     user_id = req['session']['user_id']
 
     if req['session']['new']:
@@ -77,7 +79,7 @@ def handle_dialog(req, res):
             ]
         }
         # Заполняем текст ответа
-        res['response']['text'] = 'Привет! Купи слона!'
+        res['response']['text'] = f'Привет! Купи {animal}!'
         # Получим подсказки
         res['response']['buttons'] = get_suggests(user_id)
         return
@@ -99,16 +101,19 @@ def handle_dialog(req, res):
     ]:
         if elem in ans and 'не' not in ans:
             # Пользователь согласился, прощаемся.
-            res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
+            res['response']['text'] = f'{animal} можно найти на Яндекс.Маркете!'
             res['response']['end_session'] = True
+            if animal == 'слона':
+                animal = 'кролика'
+                main()
             return
 
 
         # Если нет, то убеждаем его купить слона!
     res['response']['text'] = \
-        f"Все говорят '{req['request']['original_utterance']}', а ты купи слона!"
+        f"Все говорят '{req['request']['original_utterance']}', а ты купи {animal}!"
     res['response']['buttons'] = get_suggests(user_id)
-    return 
+    return
 
 
 # Функция возвращает две подсказки для ответа.
@@ -133,7 +138,7 @@ def get_suggests(user_id):
             "url": "https://market.yandex.ru/search?text=слон",
             "hide": True
         })
-
+    
     return suggests
 
 
