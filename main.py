@@ -104,6 +104,7 @@ def handle_dialog(req, res):
             res['response']['text'] = f'{animal} можно найти на Яндекс.Маркете!'
             if animal == 'слона':
                 animal = 'кролика'
+                req['session']['new'] = True
                 main()
             else:
                 res['response']['end_session'] = True
