@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Мое предложение: {{ planet }}</h1>
+{% for item in text %}
+<h4 style="color: darkred; background-color: lightcoral">{{ item }}</h4>
+{% endfor %}
+
+{% endblock %}
+
+<!--randombackground()-->

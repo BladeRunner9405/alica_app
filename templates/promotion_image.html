@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" class="container">
+    <link rel="stylesheet" type="text/css" href="{{ style }}"/>
+    <center>
+        <h3>Жди нас, Марс!</h3>
+        <img src="{{ img_url }}" alt="здесь картинка">
+    </center>
+    {% for item in text%}
+
+    <div class="alert alert-primary" role="alert">
+        <h6>{{ item }}</h6>
+    </div>
+
+    {% endfor %}
+</main>
+{% endblock %}
