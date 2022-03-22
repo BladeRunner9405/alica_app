@@ -102,10 +102,11 @@ def handle_dialog(req, res):
         if elem in ans and 'не' not in ans:
             # Пользователь согласился, прощаемся.
             res['response']['text'] = f'{animal} можно найти на Яндекс.Маркете!'
-            res['response']['end_session'] = True
             if animal == 'слона':
                 animal = 'кролика'
                 main()
+            else:
+                res['response']['end_session'] = True
             return
 
 
@@ -138,7 +139,7 @@ def get_suggests(user_id):
             "url": "https://market.yandex.ru/search?text=слон",
             "hide": True
         })
-    
+
     return suggests
 
 
