@@ -58,7 +58,7 @@ def main():
     handle_dialog(request.json, response)
     if request.json['session']['new']:
         animal = 'слона'
-    
+
     logging.info(f'Response:  {response!r}')
 
     # Преобразовываем в JSON и возвращаем
@@ -149,7 +149,7 @@ def get_suggests(user_id):
     if len(suggests) < 2:
         suggests.append({
             "title": "Ладно",
-            "url": "https://market.yandex.ru/search?text=слон",
+            "url": "https://market.yandex.ru/search?text=кролик",
             "hide": True
         })
 
