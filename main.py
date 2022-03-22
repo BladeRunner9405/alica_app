@@ -113,6 +113,7 @@ def handle_dialog(req, res):
                 }
                 res['response']['text'] = f'Привет! Купи {animal}!'
                 res['response']['buttons'] = get_suggests(user_id)
+                sessionStorage[user_id] = {'suggests': ["Не хочу.", "Не буду.", "Отстань!"]}
                 handle_dialog(request.json, response)
             else:
                 res['response']['end_session'] = True
