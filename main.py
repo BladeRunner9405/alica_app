@@ -18,7 +18,9 @@ cities = {
     'нью-йорк': ['1652229/728d5c86707054d4745f',
                  '1030494/aca7ed7acefde2606bdc'],
     'париж': ["1652229/f77136c2364eb90a3ea8",
-              '3450494/aca7ed7acefde22341bdc']
+              '3450494/aca7ed7acefde22341bdc'],
+    'италия': ["1030494/a30663eca9a95cf0020c", 
+               "1030494/18653da9ce2258f83ac7"]
 }
 
 # создаем словарь, где для каждого пользователя
@@ -118,7 +120,6 @@ def get_first_name(req):
             # то возвращаем ее значение.
             # Во всех остальных случаях возвращаем None.
             return entity['value'].get('first_name', None)
-
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
