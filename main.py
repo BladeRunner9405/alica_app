@@ -9,9 +9,9 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 cities = {
-    'москва': ['1540737/daa6e420d33102bf6947', '213044/7df73ae4cc715175059e'],
-    'нью-йорк': ['1652229/728d5c86707054d4745f', '1030494/aca7ed7acefde2606bdc'],
-    'париж': ["1652229/f77136c2364eb90a3ea8", '123494/aca7ed7acefd12e606bdc'],
+    'москва': ['213044/b3be55b6271ef26b4115', '1652229/92116740b61396470063'],
+    'нью-йорк': ['1652229/3934a53dca47c41f69b5', '1652229/2ad0ecb5266f764fb0d8'],
+    'париж': ["1521359/8e96c33e8f2ef6d4b60b", '213044/ddbda432bb25b26e9738'],
     'зеленоград': ['1652229/b9a1af81512704f15aaf', '1521359/eea0b58f7663c618dc93']
 }
 
@@ -39,7 +39,8 @@ def handle_dialog(res, req):
         res['response']['text'] = 'Привет! Назови своё имя!'
         sessionStorage[user_id] = {
             'first_name': None,  # здесь будет храниться имя
-            'game_started': False  # здесь информация о том, что пользователь начал игру. По умолчанию False
+            'game_started': False
+        # здесь информация о том, что пользователь начал игру. По умолчанию False
         }
         return
 
@@ -53,7 +54,8 @@ def handle_dialog(res, req):
             sessionStorage[user_id]['guessed_cities'] = []
             # как видно из предыдущего навыка, сюда мы попали, потому что пользователь написал своем имя.
             # Предлагаем ему сыграть и два варианта ответа "Да" и "Нет".
-            res['response']['text'] = f'Приятно познакомиться, {first_name.title()}. Я Алиса. Отгадаешь город по фото?'
+            res['response'][
+                'text'] = f'Приятно познакомиться, {first_name.title()}. Я Алиса. Отгадаешь город по фото?'
             res['response']['buttons'] = [
                 {
                     'title': 'Да',
